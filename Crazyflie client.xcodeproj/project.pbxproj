@@ -38,7 +38,7 @@
 		58B89C801E539F0000750790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C7F1E539F0000750790 /* AppDelegate.swift */; };
 		58B89C831E539F0C00750790 /* BCJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C811E539F0C00750790 /* BCJoystick.swift */; };
 		58B89C841E539F0C00750790 /* BCJoystickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C821E539F0C00750790 /* BCJoystickViewModel.swift */; };
-		58B89C871E539F2A00750790 /* CommandPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C861E539F2A00750790 /* CommandPacket.m */; };
+		58B89C871E539F2A00750790 /* PacketCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C861E539F2A00750790 /* PacketCreator.m */; };
 		58B89C891E539F3700750790 /* CrazyFlie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C881E539F3700750790 /* CrazyFlie.swift */; };
 		58B89C901E539F4500750790 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C8A1E539F4500750790 /* Observer.swift */; };
 		58B89C911E539F4500750790 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C8B1E539F4500750790 /* Settings.swift */; };
@@ -100,8 +100,8 @@
 		58B89C7F1E539F0000750790 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58B89C811E539F0C00750790 /* BCJoystick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCJoystick.swift; sourceTree = "<group>"; };
 		58B89C821E539F0C00750790 /* BCJoystickViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCJoystickViewModel.swift; sourceTree = "<group>"; };
-		58B89C851E539F2A00750790 /* CommandPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandPacket.h; sourceTree = "<group>"; };
-		58B89C861E539F2A00750790 /* CommandPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandPacket.m; sourceTree = "<group>"; };
+		58B89C851E539F2A00750790 /* PacketCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketCreator.h; sourceTree = "<group>"; };
+		58B89C861E539F2A00750790 /* PacketCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketCreator.m; sourceTree = "<group>"; };
 		58B89C881E539F3700750790 /* CrazyFlie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrazyFlie.swift; sourceTree = "<group>"; };
 		58B89C8A1E539F4500750790 /* Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		58B89C8B1E539F4500750790 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -211,8 +211,8 @@
 				5169E6951B66C41900D29911 /* FirmwareImage.swift */,
 				51F9501E1B691AC7008A7D8A /* Bootloader.swift */,
 				519AB5E41B6B75BB007BDE9B /* Watchdog.swift */,
-				58B89C851E539F2A00750790 /* CommandPacket.h */,
-				58B89C861E539F2A00750790 /* CommandPacket.m */,
+				58B89C851E539F2A00750790 /* PacketCreator.h */,
+				58B89C861E539F2A00750790 /* PacketCreator.m */,
 				9C89DADA1CBC35C900FA10FD /* Crazyflie client-Bridging-Header.h */,
 			);
 			path = "Crazyflie client";
@@ -317,8 +317,9 @@
 				ORGANIZATIONNAME = Bitcraze;
 				TargetAttributes = {
 					3A003939198AE038001799A4 = {
-						DevelopmentTeam = 2D27KY2HT6;
+						DevelopmentTeam = ZZ3RP82Z38;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 					};
 					3A00395A198AE038001799A4 = {
 						LastSwiftMigration = 0810;
@@ -443,7 +444,7 @@
 				58B89C951E539F4500750790 /* ViewModel.swift in Sources */,
 				58B89C831E539F0C00750790 /* BCJoystick.swift in Sources */,
 				5169E6961B66C41900D29911 /* FirmwareImage.swift in Sources */,
-				58B89C871E539F2A00750790 /* CommandPacket.m in Sources */,
+				58B89C871E539F2A00750790 /* PacketCreator.m in Sources */,
 				9C974A881CAE58840002418A /* MotionLink.swift in Sources */,
 				58B89C891E539F3700750790 /* CrazyFlie.swift in Sources */,
 				58B89C931E539F4500750790 /* SettingsViewModel.swift in Sources */,
@@ -592,6 +593,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = ZZ3RP82Z38;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crazyflie client/Crazyflie client-Prefix.pch";
 				INFOPLIST_FILE = "Crazyflie client/Crazyflie client-Info.plist";
@@ -601,9 +603,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Crazyflie client\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "se.bitcraze.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emart-software.Crazyflie-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Crazyflie client/Crazyflie client-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -622,6 +625,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = ZZ3RP82Z38;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Crazyflie client/Crazyflie client-Prefix.pch";
 				INFOPLIST_FILE = "Crazyflie client/Crazyflie client-Info.plist";
@@ -631,9 +635,10 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/Crazyflie client\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "se.bitcraze.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emart-software.Crazyflie-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Crazyflie client/Crazyflie client-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

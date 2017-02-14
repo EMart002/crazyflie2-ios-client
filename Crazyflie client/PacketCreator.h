@@ -16,8 +16,13 @@ typedef struct __attribute__((packed)) {
     uint16_t thrust;
 } CommanderPacket;
 
-@interface CommandPacketCreator : NSObject
+typedef struct __attribute__((packed)) {
+    uint8_t header;
+} LogGetInfoRequestPacket;
 
-+ (NSData *)dataFrom:(CommanderPacket) packet;
+@interface PacketCreator : NSObject
+
++ (NSData *)dataFromCommander:(CommanderPacket)packet;
++ (NSData *)dataFromGetInfo:(LogGetInfoRequestPacket)packet;
 
 @end
