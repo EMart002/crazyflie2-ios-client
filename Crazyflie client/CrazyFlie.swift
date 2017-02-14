@@ -17,8 +17,16 @@ protocol CrazyFlieCommander {
     func prepareData()
 }
 
+protocol CrazyFlieLog {
+}
+
 enum CrazyFlieHeader: UInt8 {
+    case console = 0x00
+    case parameter = 0x20
     case commander = 0x30
+    case memory = 0x40
+    case logging = 0x50
+    case platform = 0x13
 }
 
 enum CrazyFlieState {
@@ -43,6 +51,7 @@ open class CrazyFlie: NSObject {
     private(set) var bluetoothLink:BluetoothLink!
 
     var commander: CrazyFlieCommander?
+    var logger: CrazyFlieLog?
     
     init(bluetoothLink:BluetoothLink? = BluetoothLink(), delegate: CrazyFlieDelegate?) {
         
@@ -77,7 +86,7 @@ open class CrazyFlie: NSObject {
             return
         }
         
-        self.bluetoothLink.connect(nil, callback: {[weak self] (connected) in
+        bluetoothLink.connect(nil, callback: {[weak self] (connected) in
             callback?(connected)
             guard connected else {
                 if self?.timer != nil {
@@ -106,6 +115,9 @@ open class CrazyFlie: NSObject {
             
             self?.startTimer()
         })
+        
+        bluetoothLink.rxCallback = onLinkRx
+        sendReadRequest()
     }
     
     func disconnect() {
@@ -113,7 +125,14 @@ open class CrazyFlie: NSObject {
         stopTimer()
     }
     
-    // MARK: - Private Methods 
+    // MARK: - Private Methods
+    
+    private func onLinkRx(_ packet: Data) {
+        print("Packet received by bootloader \(packet.count) bytes")
+        var packetArray = [UInt8](repeating: 0, count: packet.count)
+        (packet as NSData).getBytes(&packetArray, length:packetArray.count)
+        print(packetArray)
+    }
     
     private func startTimer() {
         stopTimer()
@@ -139,7 +158,19 @@ open class CrazyFlie: NSObject {
     
     private func sendFlightData(_ roll:Float, pitch:Float, thrust:Float, yaw:Float) {
         let commandPacket = CommanderPacket(header: CrazyFlieHeader.commander.rawValue, roll: roll, pitch: pitch, yaw: yaw, thrust: UInt16(thrust))
-        let data = CommandPacketCreator.data(from: commandPacket)
+        let data = PacketCreator.data(fromCommander: commandPacket)
+        bluetoothLink.sendPacket(data!, callback: nil)
+    }
+    
+    private func sendReadRequest() {
+        let commandPacket = LogGetInfoRequestPacket(header: CrazyFlieHeader.logging.rawValue)
+        let data = PacketCreator.data(fromGetInfo: commandPacket)
+        bluetoothLink.sendPacket(data!, callback: nil)
+    }
+    
+    private func sendReadDataRequest() {
+        let commandPacket = LogGetInfoRequestPacket(header: CrazyFlieHeader.logging.rawValue)
+        let data = PacketCreator.data(fromGetInfo: commandPacket)
         bluetoothLink.sendPacket(data!, callback: nil)
     }
 }
