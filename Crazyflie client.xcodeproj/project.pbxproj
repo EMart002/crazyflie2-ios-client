@@ -47,6 +47,8 @@
 		58B89C941E539F4500750790 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C8E1E539F4500750790 /* ViewController.swift */; };
 		58B89C951E539F4500750790 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C8F1E539F4500750790 /* ViewModel.swift */; };
 		58B89C971E539F9A00750790 /* CrazyFlieCommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89C961E539F9A00750790 /* CrazyFlieCommandHelper.swift */; };
+		58B89CF81E56368E00750790 /* TocRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89CF71E56368E00750790 /* TocRequester.swift */; };
+		58B89CFA1E5646C000750790 /* TypeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B89CF91E5646C000750790 /* TypeConverter.swift */; };
 		9C974A881CAE58840002418A /* MotionLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C974A871CAE58840002418A /* MotionLink.swift */; };
 		9C974A891CAE58840002418A /* MotionLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C974A871CAE58840002418A /* MotionLink.swift */; };
 		A9ED5CE618365A835BCE6316 /* Pods_Crazyflie_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12141818E36E1A261D77B0DB /* Pods_Crazyflie_client.framework */; };
@@ -110,6 +112,8 @@
 		58B89C8E1E539F4500750790 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		58B89C8F1E539F4500750790 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		58B89C961E539F9A00750790 /* CrazyFlieCommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrazyFlieCommandHelper.swift; sourceTree = "<group>"; };
+		58B89CF71E56368E00750790 /* TocRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TocRequester.swift; sourceTree = "<group>"; };
+		58B89CF91E5646C000750790 /* TypeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeConverter.swift; sourceTree = "<group>"; };
 		5DFF2281859CF831709F91CE /* Pods-Crazyflie client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crazyflie client.release.xcconfig"; path = "Pods/Target Support Files/Pods-Crazyflie client/Pods-Crazyflie client.release.xcconfig"; sourceTree = "<group>"; };
 		8DFBD893C1CD99CE121EFD5F /* Pods-Crazyflie client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crazyflie client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Crazyflie client/Pods-Crazyflie client.debug.xcconfig"; sourceTree = "<group>"; };
 		9C89DADA1CBC35C900FA10FD /* Crazyflie client-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crazyflie client-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				58B89C851E539F2A00750790 /* PacketCreator.h */,
 				58B89C861E539F2A00750790 /* PacketCreator.m */,
 				9C89DADA1CBC35C900FA10FD /* Crazyflie client-Bridging-Header.h */,
+				58B89CF71E56368E00750790 /* TocRequester.swift */,
+				58B89CF91E5646C000750790 /* TypeConverter.swift */,
 			);
 			path = "Crazyflie client";
 			sourceTree = "<group>";
@@ -430,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B89CFA1E5646C000750790 /* TypeConverter.swift in Sources */,
 				58B89C901E539F4500750790 /* Observer.swift in Sources */,
 				58B89C801E539F0000750790 /* AppDelegate.swift in Sources */,
 				5169E6941B66527900D29911 /* BootloaderViewController.swift in Sources */,
@@ -448,6 +455,7 @@
 				9C974A881CAE58840002418A /* MotionLink.swift in Sources */,
 				58B89C891E539F3700750790 /* CrazyFlie.swift in Sources */,
 				58B89C931E539F4500750790 /* SettingsViewModel.swift in Sources */,
+				58B89CF81E56368E00750790 /* TocRequester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

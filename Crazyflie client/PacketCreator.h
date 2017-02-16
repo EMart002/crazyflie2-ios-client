@@ -18,11 +18,11 @@ typedef struct __attribute__((packed)) {
 
 typedef struct __attribute__((packed)) {
     uint8_t header;
-} LogGetInfoRequestPacket;
+} TocRequestPacket;
 
 @interface PacketCreator : NSObject
 
 + (NSData *)dataFromCommander:(CommanderPacket)packet;
-+ (NSData *)dataFromGetInfo:(LogGetInfoRequestPacket)packet;
++ (NSData *)dataFromToc:(TocRequestPacket)packet;
 
 @end
