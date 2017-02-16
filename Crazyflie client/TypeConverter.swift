@@ -8,9 +8,9 @@
 
 import Foundation
 
-class TypeConverter<T> {
+class TypeConverter<T>: NSObject {
     
-    static func toByteArray<T>(_ value: T) -> [UInt8] {
+    static func toByteArray(_ value: T) -> [UInt8] {
         var value = value
         return withUnsafePointer(to: &value) {
             $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size) {
@@ -19,7 +19,7 @@ class TypeConverter<T> {
         }
     }
     
-    static func fromByteArray<T>(_ value: [UInt8]) -> T {
+    static func fromByteArray(_ value: [UInt8]) -> T {
         return value.withUnsafeBufferPointer {
             $0.baseAddress!.withMemoryRebound(to: T.self, capacity: 1) {
                 $0.pointee

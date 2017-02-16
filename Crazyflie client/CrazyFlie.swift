@@ -77,20 +77,21 @@ open class CrazyFlie: NSObject {
     }
     private var timer:Timer?
     private var delegate: CrazyFlieDelegate?
-    private(set) var bluetoothLink:BluetoothLink!
+    private(set) var bluetoothLink: BluetoothLink
 
     var commander: CrazyFlieCommander?
     var tocRequester: CrazyFlieTocRequester?
     
-    init(bluetoothLink:BluetoothLink? = BluetoothLink(), delegate: CrazyFlieDelegate?) {
+    init(bluetoothLink:BluetoothLink = BluetoothLink(), delegate: CrazyFlieDelegate?) {
         
         state = .idle
         self.delegate = delegate
         
         self.bluetoothLink = bluetoothLink
+        self.tocRequester = TocRequester(bluetoothLink: bluetoothLink)
         super.init()
     
-        bluetoothLink?.onStateUpdated{[weak self] (state) in
+        bluetoothLink.onStateUpdated{[weak self] (state) in
             if state.isEqual(to: "idle") {
                 self?.state = .idle
             } else if state.isEqual(to: "connected") {
@@ -111,7 +112,7 @@ open class CrazyFlie: NSObject {
     
     func connect(_ callback:((Bool) -> Void)?) {
         guard state == .idle else {
-            self.disconnect()
+            disconnect()
             return
         }
         
@@ -143,8 +144,9 @@ open class CrazyFlie: NSObject {
             }
             
             self?.startTimer()
+            self?.setTocReadRequest()
         })
-    
+        
         setTocReadRequest()
     }
     
@@ -154,13 +156,6 @@ open class CrazyFlie: NSObject {
     }
     
     // MARK: - Private Methods
-    
-    private func onLinkRx(_ packet: Data) {
-        print("Packet received by bootloader \(packet.count) bytes")
-        var packetArray = [UInt8](repeating: 0, count: packet.count)
-        (packet as NSData).getBytes(&packetArray, length:packetArray.count)
-        print(packetArray)
-    }
     
     private func startTimer() {
         stopTimer()
