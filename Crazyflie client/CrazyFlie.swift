@@ -17,8 +17,34 @@ protocol CrazyFlieCommander {
     func prepareData()
 }
 
-protocol CrazyFlieLog {
+protocol CrazyFlieTocRequester {
+    func request()
 }
+
+protocol CrazyFlieTocLogRequester {
+    func request()
+}
+
+enum TocDatatype: UInt8 {
+    case uint8_t = 0x01
+    case uint16_t = 0x02
+    case uint32_t = 0x03
+    case int8_t = 0x04
+    case int16_t = 0x05
+    case int32_t = 0x06
+    case float = 0x07
+    case FP16 = 0x08
+}
+
+/*types = {0x01: ("uint8_t",  '<B', 1),
+    0x02: ("uint16_t", '<H', 2),
+    0x03: ("uint32_t", '<L', 4),
+    0x04: ("int8_t",   '<b', 1),
+    0x05: ("int16_t",  '<h', 2),
+    0x06: ("int32_t",  '<i', 4),
+    0x08: ("FP16",     '<h', 2),
+    0x07: ("float",    '<f', 4)}
+*/
 
 enum CrazyFlieHeader: UInt8 {
     case console = 0x00
@@ -28,6 +54,9 @@ enum CrazyFlieHeader: UInt8 {
     case logging = 0x50
     case platform = 0x13
 }
+
+
+
 
 enum CrazyFlieState {
     case idle, connected , scanning, connecting, services, characteristics
@@ -51,7 +80,7 @@ open class CrazyFlie: NSObject {
     private(set) var bluetoothLink:BluetoothLink!
 
     var commander: CrazyFlieCommander?
-    var logger: CrazyFlieLog?
+    var tocRequester: CrazyFlieTocRequester?
     
     init(bluetoothLink:BluetoothLink? = BluetoothLink(), delegate: CrazyFlieDelegate?) {
         
@@ -115,9 +144,8 @@ open class CrazyFlie: NSObject {
             
             self?.startTimer()
         })
-        
-        bluetoothLink.rxCallback = onLinkRx
-        sendReadRequest()
+    
+        setTocReadRequest()
     }
     
     func disconnect() {
@@ -162,15 +190,7 @@ open class CrazyFlie: NSObject {
         bluetoothLink.sendPacket(data!, callback: nil)
     }
     
-    private func sendReadRequest() {
-        let commandPacket = LogGetInfoRequestPacket(header: CrazyFlieHeader.logging.rawValue)
-        let data = PacketCreator.data(fromGetInfo: commandPacket)
-        bluetoothLink.sendPacket(data!, callback: nil)
-    }
-    
-    private func sendReadDataRequest() {
-        let commandPacket = LogGetInfoRequestPacket(header: CrazyFlieHeader.logging.rawValue)
-        let data = PacketCreator.data(fromGetInfo: commandPacket)
-        bluetoothLink.sendPacket(data!, callback: nil)
+    private func setTocReadRequest() {
+        tocRequester?.request()
     }
 }
